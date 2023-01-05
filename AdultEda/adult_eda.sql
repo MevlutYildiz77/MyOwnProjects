@@ -40,24 +40,21 @@ GROUP BY education
 ORDER BY CountsOfEducationKinds DESC
 
 
---??????????What percentage of people with advanced education (Bachelors, Masters, or Doctorate) make more than 50K? ---
-SELECT  COUNT(salary) as salary
+--What percentage of people with advanced education (Bachelors, Masters, or Doctorate) make more than 50K? 
+SELECT  salary,  COUNT(salary) as countofsalary
 FROM adult_eda
 WHERE education IN('Bachelors', 'Masters', 'Doctorates')
-AND salary > '50k'
+AND salary   IN('>50K')
 
-ORDER BY salary
+GROUP BY salary
+ORDER BY countofsalary
 
-SELECT  COUNT(salary) as salary_order
-FROM adult_eda
-WHERE salary > '50K'
-GROUP BY education
-ORDER BY salary_order
+
 
 --????What country has the highest percentage of people that earn >50K?  --
-SELECT native_country, COUNT(MAX(salary))as MaxSalary
+SELECT native_country, COUNT(MAX(salary)) as MaxSalary
 FROM adult_eda
-WHERE salary = '>50K'
+WHERE salary IN('>50K')
 GROUP BY native_country
 ORDER BY MaxSalary
 
